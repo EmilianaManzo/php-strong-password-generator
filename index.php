@@ -7,6 +7,12 @@ if (!isset($_GET['length'])){
 }else{
   $length = $_GET['length'];
   $password = randomPass($length);
+  session_start();
+  
+  $_SESSION['newpassowrd'] = $password;
+  
+  header ('Location: ./password.php');
+
 };
 
 
@@ -22,24 +28,22 @@ if (!isset($_GET['length'])){
 </head>
 <body>
   <div class="container">
-    <div class="row d-flex justify-content-center align-items-center ">
-      <div class="col">
-        <form action="index.php" method="GET">
-          <div>
+    <div class="row pt-5  d-flex justify-content-center align-items-center ">
+      <div class="col pt-5 text-center">
+        <h1 class=" bg-danger ">GENERATORE PASSWORD SICURE</h1>
+        <form action="index.php" method="GET" class="text-center">
+          <div class="my-5">
             <label for="">Lunghezza password:</label>
             <input type="text" id="length" name="length" placeholder="Inserisci lunghezza">
           
           </div>
-          <div>
+          <div class="my-5">
             <button type="submit" class="btn btn-danger">Genera</button>
             <button type="submit" class="btn btn-secondary">Annulla</button>
           </div>
         </form>
         <div><?php echo $password ?></div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col"></div>
     </div>
   </div>
 </body>
